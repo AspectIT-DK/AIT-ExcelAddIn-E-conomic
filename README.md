@@ -1,2 +1,8 @@
-# AIT-ExcelAddIn-E-conomic
-MS Excel Add-In for E-conomic
+# MS Excel Add-In for E-conomic, built with C# VSTO
+
+## Features
+
+### Create Invoice Drafts directly from a Excel
+Select one or more rows with valid data and press the **{Create Draft Invoice}** button to create invoice drafts in E-Conomic.
+You can inspect the drafts in E-Conomic online. Check for errors, make modifications or just bulk-approve the drafts you created. 
+
