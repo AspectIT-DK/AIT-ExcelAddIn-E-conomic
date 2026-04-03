@@ -1,0 +1,29 @@
+﻿<Window x:Class="AIT_ExcelAddIn_E_conomic.Views.HelpWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:local="clr-namespace:AIT_ExcelAddIn_E_conomic.Views"
+             Title="Help" Height="400" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Column="0" Grid.Row="0" Margin="8">
+            <TextBlock x:Name="TextBlockAssemblyInfo" DockPanel.Dock="Top" FontSize="14">
+                Assembly Info
+            </TextBlock>
+            <TextBlock x:Name="TextBlockDocumentation" DockPanel.Dock="Top" FontSize="14">
+                Documentation and Source Code available on Github <Hyperlink x:Name="LinkGithub" NavigateUri="https://github.com/AspectIT-DK/AIT-ExcelAddIn-E-conomic" Click="Hyperlink_Click">https://github.com/AspectIT-DK/AIT-ExcelAddIn-E-conomic</Hyperlink>
+                <LineBreak></LineBreak>
+                <LineBreak></LineBreak>
+                Documentation for E-Conomic REST API available on their site <Hyperlink x:Name="LinkAPI" NavigateUri="https://restdocs.e-conomic.com/" Click="Hyperlink_Click_1">https://restdocs.e-conomic.com/</Hyperlink>
+            </TextBlock>
+        </DockPanel>
+        
+
+    </Grid>
+</Window>
