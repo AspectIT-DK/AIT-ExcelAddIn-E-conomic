@@ -1,15 +1,10 @@
 ﻿using AIT_ExcelAddIn_E_conomic.Configuration;
-using AIT_ExcelAddIn_E_conomic.Data;
-using AIT_ExcelAddIn_E_conomic.Logging;
-using Microsoft.Office.Interop.Excel;
+using AIT_ExcelAddIn_E_conomic.DataAccess;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO.Ports;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Windows;
+using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 
 
@@ -17,6 +12,42 @@ namespace AIT_ExcelAddIn_E_conomic.Data
 {
     public class InvoiceBuilder
     {
+        private readonly APIHandler APIHandler = new APIHandler();
+        public async Task<bool> SendInvoicesToAPI(PreparedInvoiceData PreparedInvoiceData)
+        {
+            if (PreparedInvoiceData is null) return false;
+            foreach (Invoice Invoice in PreparedInvoiceData.ConsolidatedInvoicesByCustomerNumber.Values)
+            {
+                var Response = await APIHandler.CreateInvoiceDraft(Invoice);
+                if(!Response.IsSuccessStatusCode)
+                {
+                    MarkRowsAsInvoiceFail(PreparedInvoiceData, Invoice.Customer.CustomerNumber);
+                    return false;
+                }
+                //Logger.WriteLine(Invoice.Customer.CustomerNumber.ToString());
+                //Logger.WriteLine("API Call: " + ((int)Response.StatusCode).ToString() + " - " + Response.ReasonPhrase.ToString());
+                MarkRowsAsInvoiceSuccess(PreparedInvoiceData, Invoice.Customer.CustomerNumber);
+            }
+            return true;
+        }
+        private void MarkRowsAsInvoiceFail(PreparedInvoiceData PreparedInvoiceData, int AffectedCustomerNumber)
+        {
+            foreach(int RowNumber in PreparedInvoiceData.AssociatedRowsByCustomerNumber[AffectedCustomerNumber])
+            {
+                Validate.MarkRowInvoiceFail(RowNumber);
+            }
+        }
+        private void MarkRowAsInvoiceFail(int RowNumber)
+        {
+            Validate.MarkRowInvoiceFail(RowNumber);
+        }
+        private void MarkRowsAsInvoiceSuccess(PreparedInvoiceData PreparedInvoiceData, int AffectedCustomerNumber)
+        {
+            foreach (int RowNumber in PreparedInvoiceData.AssociatedRowsByCustomerNumber[AffectedCustomerNumber])
+            {
+                Validate.MarkRowInvoiceSuccess(RowNumber);
+            }
+        }
         private class InvoiceRowObject : IEquatable<InvoiceRowObject>
         {
             public int RowNumber { get; set; }
@@ -29,16 +60,20 @@ namespace AIT_ExcelAddIn_E_conomic.Data
                 else return false;
             }
         }
-
-        public List<Invoice> BuildInvoicesFromSelection(Excel.Range SelectedRows)
+        public class PreparedInvoiceData
         {
-            Dictionary<int, Invoice> ConsolidatedInvoicesByCustomerNumber = new Dictionary<int, Invoice>();
+            public Dictionary<int, Invoice> ConsolidatedInvoicesByCustomerNumber { get; set; }
+            public Dictionary<int, List<int>> AssociatedRowsByCustomerNumber { get; set; }
+        }
+        public PreparedInvoiceData BuildInvoicesFromSelection(Excel.Range SelectedRows)
+        {
+            if (SelectedRows.Count == 0) { return null; } // User has no rows selected; Commit die.
+
             List<InvoiceRowObject> InvoiceRowObjects = new List<InvoiceRowObject>();
+            Dictionary<int, Invoice> ConsolidatedInvoicesByCustomerNumber = new Dictionary<int, Invoice>();
+            Dictionary<int, List<int>> AssociatedRowsByCustomerNumber = new Dictionary<int, List<int>>();
 
-            // User has no rows selected, but still presses button? Commit die.
-            if (SelectedRows.Count == 0) { return null; }
-
-            // Build Invoice and InvoiceLine bases from selection. Ensure datatype integrity and report errors to user.
+            // Build Invoice and InvoiceLine bases from selection. Ensure datatype integrity and report datatype errors to user.
             foreach (Excel.Range Row in SelectedRows)
             {
                 Invoice InvoiceFromRow;
@@ -46,7 +81,8 @@ namespace AIT_ExcelAddIn_E_conomic.Data
 
                 if ((InvoiceFromRow = BuildInvoiceFromSingleRow(Row)) is null || (InvoiceLineFromRow = BuildInvoiceLineFromSingleRow(Row)) is null)
                 {
-                    MessageBox.Show($"Error on Row: {Row.Row}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MarkRowAsInvoiceFail(Row.Row);
+                    Validate.ShowError($"Error on Row: {Row.Row}");
                     return null;
                 }
                 else
@@ -56,53 +92,62 @@ namespace AIT_ExcelAddIn_E_conomic.Data
             }
 
             // Consolidate InvoiceRowObjects into a single Invoice base, with multiple? Invoice Line Items.
-            foreach(InvoiceRowObject Object in InvoiceRowObjects)
+            foreach (InvoiceRowObject Object in InvoiceRowObjects)
             {
                 Invoice CurrentInvoice;
                 int CurrentCustomerNumber = Object.Invoice.Customer.CustomerNumber;
-                if (ConsolidatedInvoicesByCustomerNumber.TryGetValue(CurrentCustomerNumber, out CurrentInvoice) == true)
+                if (ConsolidatedInvoicesByCustomerNumber.TryGetValue(CurrentCustomerNumber, out CurrentInvoice))
                 {
                     // CASE: Invoice with CustomerNumber already exists; Consolidate Invoice Lines on this Invoice base.
                     CurrentInvoice.Lines.Add(Object.Line);
+                    CurrentInvoice.Lines.Add(InvoiceLine.GetLineSeparator());
+                    AssociatedRowsByCustomerNumber[CurrentCustomerNumber].Add(Object.RowNumber);
                 }
                 else
                 {
                     // CASE: Invoice with CustomerNumber doesn't exist; Add Invoice as Base, and include current Invoice Line
                     ConsolidatedInvoicesByCustomerNumber.Add(CurrentCustomerNumber, Object.Invoice);
                     ConsolidatedInvoicesByCustomerNumber[CurrentCustomerNumber].Lines.Add(Object.Line);
+                    ConsolidatedInvoicesByCustomerNumber[CurrentCustomerNumber].Lines.Add(InvoiceLine.GetLineSeparator());
+                    AssociatedRowsByCustomerNumber.Add(CurrentCustomerNumber, new List<int>());
+                    AssociatedRowsByCustomerNumber[CurrentCustomerNumber].Add(Object.RowNumber);
                 }
             }
 
-            // REFACTOR
             // LineNumber and SortKey must be unique, per invoice. 
-            foreach(KeyValuePair<int, Invoice> Invoice in ConsolidatedInvoicesByCustomerNumber)
+            foreach (KeyValuePair<int, Invoice> Invoice in ConsolidatedInvoicesByCustomerNumber)
             {
                 int Counter = 1; // Starts at 1.      Per E-Conomic API Documentation.
-                foreach(InvoiceLine Line in Invoice.Value.Lines)
+                foreach (InvoiceLine Line in Invoice.Value.Lines)
                 {
                     Line.LineNumber = Counter;
-                    Line.SortKey    = Counter;
+                    Line.SortKey = Counter;
                     Counter++;
                 }
             }
 
-            return ConsolidatedInvoicesByCustomerNumber.Values.ToList<Invoice>();
+            return (new PreparedInvoiceData { AssociatedRowsByCustomerNumber = AssociatedRowsByCustomerNumber, 
+                                              ConsolidatedInvoicesByCustomerNumber = ConsolidatedInvoicesByCustomerNumber });
         }
         public Invoice BuildInvoiceFromSingleRow(Excel.Range SingleRow)
         {
             Invoice Invoice = new Invoice();
-            int CustomerNumber;
+            int CustomerNumber;            
+            if(!Validate.ParseInt(Convert.ToString((SingleRow.Cells[1, Settings.FieldMap["ColDefCustomerNumber"]] as Excel.Range).Value), out CustomerNumber)) { return null; }
             
-            if(!Validate.ParseInt(Convert.ToString((SingleRow.Cells[1, Settings.FieldMap["ColDefCustomerNumber"]] as Excel.Range).Value), out CustomerNumber))
+            Customer Customer = BuildCustomer(CustomerNumber).Result;
+            if (Customer is null)
             {
+                Validate.ShowError($"Customer with Number: {CustomerNumber} does not exist in E-Conomic");
                 return null;
             }
 
-            string CustomerName = Convert.ToString((SingleRow.Cells[1, Settings.FieldMap["ColDefCustomerName"]] as Excel.Range).Value);
-            Invoice.Customer = new Customer { CustomerNumber = CustomerNumber };
-            Invoice.Recipient = new Recipient { Name = CustomerName, VatZone = (VatZone)Settings.InvSettings["VatZone"] };
-            Invoice.Layout = (Layout)Settings.InvSettings["Layout"];
-            Invoice.PaymentTerms = (PaymentTerms)Settings.InvSettings["PaymentTerms"];
+            string CustomerName  = Convert.ToString((SingleRow.Cells[1, Settings.FieldMap["ColDefCustomerName"]] as Excel.Range).Value);
+            Invoice.Customer     = Customer;
+            Invoice.Recipient    = new Recipient { Name = CustomerName, VatZone = Customer.VatZone };
+            Invoice.Layout       = Customer.Layout;
+            Invoice.PaymentTerms = Customer.PaymentTerms;
+            Invoice.Date         = Settings.InvoiceIssueDate.ToString("yyyy-MM-dd");
 
             return Invoice;
         }
@@ -118,47 +163,16 @@ namespace AIT_ExcelAddIn_E_conomic.Data
 
             InvoiceLine Line = new InvoiceLine();
 
-            Line.Description = Description;
-            Line.UnitNetPrice = UnitNetPrice;
-            Line.SortKey = 99; // 99 Magic number to show we need to change it
-            Line.LineNumber = 99; // 99 Magic number to show we need to change it
-            Line.Quantity = 1.0M;
-            Line.Product = new Product { ProductNumber = "1" };
+            Line.Description    = Description;
+            Line.UnitNetPrice   = UnitNetPrice;
+            Line.SortKey        = 99; // 99 Magic number to show we need to change it
+            Line.LineNumber     = 99; // 99 Magic number to show we need to change it
+            Line.Quantity       = 1.0M;
+            Line.Product        = (Product)Settings.InvSettings["Product"];
+            Line.Unit           = (Unit)Settings.InvSettings["Unit"];
 
             return Line;
         }
-        //public Invoice BuildInvoice(Excel.Range Range)
-        //{
-        //    Invoice Invoice = new Invoice();
-        //    List<InvoiceLine> Lines = new List<InvoiceLine>();
-
-        //    Range = Range.EntireRow;
-        //    string DescriptionDefinition = Settings.FieldMap["ColDefDescription"];
-
-        //    string CustomerNumber = Convert.ToString((Range.Cells[1, Settings.FieldMap["ColDefCustomerNumber"]] as Excel.Range).Value);
-        //    string CustomerName   = Convert.ToString((Range.Cells[1, Settings.FieldMap["ColDefCustomerName"]] as Excel.Range).Value);
-        //    string UnitNetPrice   = Convert.ToString((Range.Cells[1, Settings.FieldMap["ColDefLineItemPrice"]] as Excel.Range).Value);
-
-
-        //    Invoice.Customer     = new Customer { CustomerNumber = Int32.Parse(CustomerNumber) };
-        //    Invoice.Recipient    = new Recipient { Name = CustomerName, VatZone = (VatZone)Settings.InvSettings["VatZone"] };
-        //    Invoice.Layout       = (Layout)Settings.InvSettings["Layout"];
-        //    Invoice.PaymentTerms = (PaymentTerms)Settings.InvSettings["PaymentTerms"];
-
-        //    InvoiceLine Line = new InvoiceLine();
-        //    Line.Quantity = 1;
-        //    Line.LineNumber = 1;
-        //    Line.SortKey = 1;
-        //    Line.UnitNetPrice = Int32.Parse(UnitNetPrice);
-        //    Line.Description = GetParsedDescription(DescriptionDefinition, Range);
-
-        //    Lines.Add(Line);
-
-        //    Invoice.Lines = Lines;
-
-        //    return Invoice;
-        //}
-
         public string GetParsedDescription(string DescriptionDefinition, Excel.Range SingleRow)
         {
             List<string> Columns = new List<string>();
@@ -189,6 +203,21 @@ namespace AIT_ExcelAddIn_E_conomic.Data
             }
 
             return StringBuilder.ToString();
+        }
+        public async Task<Customer> BuildCustomer(int CustomerNumber)
+        {
+            Customer Customer = await APIHandler.GetCustomer(CustomerNumber);
+            if (Customer is null) return null;
+            else
+            {
+                Customer.CustomerGroup = await APIHandler.GetCustomerGroup(Customer.CustomerGroup.CustomerGroupNumber);
+
+                if (Customer.Layout is null)        Customer.Layout         = Customer.CustomerGroup.Layout ?? (Layout)Settings.InvSettings["Layout"];
+                if (Customer.PaymentTerms is null)  Customer.PaymentTerms   = (PaymentTerms)Settings.InvSettings["PaymentTerms"];
+                if (Customer.VatZone is null)       Customer.VatZone        = (VatZone)Settings.InvSettings["VatZone"];
+
+                return Customer;
+            }
         }
     }
 }

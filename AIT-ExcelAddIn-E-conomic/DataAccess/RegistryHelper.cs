@@ -7,12 +7,6 @@ namespace AIT_ExcelAddIn_E_conomic.DataAccess
     {
         private const string BasePath = @"Software\AspectIT\ExcelAddInEconomic";
 
-        //public static void CreateKey(string name)
-        //{
-        //    string fullname = BasePath + @"\" + name;
-        //    Registry.CurrentUser.CreateSubKey(fullname);
-        //}
-
         public static void SetValue(string name, object value, RegistryValueKind kind = RegistryValueKind.String)
         {
             var key = Registry.CurrentUser.CreateSubKey(BasePath);

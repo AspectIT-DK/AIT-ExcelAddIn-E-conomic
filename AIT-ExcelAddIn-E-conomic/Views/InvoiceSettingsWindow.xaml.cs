@@ -1,21 +1,9 @@
 ﻿using AIT_ExcelAddIn_E_conomic.Configuration;
 using AIT_ExcelAddIn_E_conomic.Data;
 using AIT_ExcelAddIn_E_conomic.DataAccess;
-using AIT_ExcelAddIn_E_conomic.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AIT_ExcelAddIn_E_conomic.Views
 {
@@ -30,6 +18,9 @@ namespace AIT_ExcelAddIn_E_conomic.Views
         private LayoutCollection Layouts;
         private VatZoneCollection VatZones;
         private PaymentTermsCollection PaymentTerms;
+        private ProductCollection Products;
+        private UnitCollection Units;
+        private DateTime IssueDate;
         public InvoiceSettingsWindow()
         {
             InitializeComponent();
@@ -45,7 +36,7 @@ namespace AIT_ExcelAddIn_E_conomic.Views
             // Description
             TextBoxDescriptionDefinition.DataContext = Fields;
 
-            // Layout and Terms
+            // Comboboxes - Default Layout, Default VAT Zone, Default Payment Terms, Default Product, Invoice Issued Date
             Layouts                         = APIHandler.GetAllLayouts().Result;
             Layout SelectedLayout           = (Layout)Settings.InvSettings["Layout"];
             ComboBoxLayouts.DataContext     = Layouts;
@@ -60,18 +51,39 @@ namespace AIT_ExcelAddIn_E_conomic.Views
             PaymentTerms SelectedPaymentTerms   = (PaymentTerms)Settings.InvSettings["PaymentTerms"];
             ComboBoxPaymentTerms.DataContext    = PaymentTerms;
             ComboBoxPaymentTerms.SelectedValue  = SelectedPaymentTerms.PaymentTermsNumber;
+
+            Products                    = APIHandler.GetAllProducts().Result;
+            ComboBoxProduct.DataContext = Products;
+            Object SelectedProduct;
+            if (Settings.InvSettings.TryGetValue("Product", out SelectedProduct))
+            {
+                ComboBoxProduct.SelectedValue = (SelectedProduct as Product).ProductNumber;
+            }
+
+            Units                    = APIHandler.GetAllUnits().Result;
+            ComboBoxUnit.DataContext = Units;
+            Object SelectedUnit;
+            if (Settings.InvSettings.TryGetValue("Unit", out SelectedUnit))
+            {
+                ComboBoxUnit.SelectedValue = (SelectedUnit as Unit).UnitNumber;
+            }
+
+            DatePickerInvoiceCreatedDate.SelectedDate = Settings.InvoiceIssueDate;
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            Settings.FieldMap["ColDefCustomerNumber"]   = Fields.CustomerNumber;
-            Settings.FieldMap["ColDefCustomerName"]     = Fields.CustomerName;
-            Settings.FieldMap["ColDefDescription"]      = Fields.Description;
-            Settings.FieldMap["ColDefLineItemPrice"]    = Fields.LineItemPrice;
+            Settings.FieldMap["ColDefCustomerNumber"]    = Fields.CustomerNumber;
+            Settings.FieldMap["ColDefCustomerName"]      = Fields.CustomerName;
+            Settings.FieldMap["ColDefDescription"]       = Fields.Description;
+            Settings.FieldMap["ColDefLineItemPrice"]     = Fields.LineItemPrice;
             Settings.FieldMap["CultureDecimalDelimiter"] = Fields.CultureDecimalDelimiter;
-            Settings.InvSettings["Layout"]              = (Layout)ComboBoxLayouts.SelectedItem;
-            Settings.InvSettings["PaymentTerms"]        = (PaymentTerms)ComboBoxPaymentTerms.SelectedItem;
-            Settings.InvSettings["VatZone"]             = (VatZone)ComboBoxVatZones.SelectedItem;
+            Settings.InvSettings["Layout"]               = (Layout)ComboBoxLayouts.SelectedItem;
+            Settings.InvSettings["PaymentTerms"]         = (PaymentTerms)ComboBoxPaymentTerms.SelectedItem;
+            Settings.InvSettings["VatZone"]              = (VatZone)ComboBoxVatZones.SelectedItem;
+            Settings.InvSettings["Product"]              = (Product)ComboBoxProduct.SelectedItem;
+            Settings.InvSettings["Unit"]                 = (Unit)ComboBoxUnit.SelectedItem;
+            Settings.InvoiceIssueDate                    = (DateTime)DatePickerInvoiceCreatedDate.SelectedDate;
 
             Settings.SaveSettingsToRegistry();
             //TextBlockStatusBar.Foreground = Brushes.Black;
@@ -80,10 +92,10 @@ namespace AIT_ExcelAddIn_E_conomic.Views
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
-
+            // Do nothing; Close Window
         }
 
-        protected class InvoiceFields
+        private class InvoiceFields
         {
             public string CustomerNumber { get; set; }
             public string CustomerName { get; set; }

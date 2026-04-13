@@ -33,3 +33,5 @@ F:\Workspace\AspectIT\E-Conomic Tools\Excel Add-In\AIT-ExcelAddIn-E-conomic on G
 F:\Workspace\AspectIT\E-Conomic Tools\Excel Add-In\AIT-ExcelAddIn-E-conomic on Github\AIT-ExcelAddIn-E-conomic\obj\Debug\Views\HelpWindow.baml
 F:\Workspace\AspectIT\E-Conomic Tools\Excel Add-In\AIT-ExcelAddIn-E-conomic on Github\AIT-ExcelAddIn-E-conomic\obj\Debug\Views\InvoiceSettingsWindow.baml
 F:\Workspace\AspectIT\E-Conomic Tools\Excel Add-In\AIT-ExcelAddIn-E-conomic on Github\AIT-ExcelAddIn-E-conomic\obj\Debug\AIT-ExcelAddIn-E-conomic.g.resources
+F:\Workspace\AspectIT\E-Conomic Tools\Excel Add-In\AIT-ExcelAddIn-E-conomic on Github\AIT-ExcelAddIn-E-conomic\obj\Debug\Views\PreferencesWindow.g.cs
+F:\Workspace\AspectIT\E-Conomic Tools\Excel Add-In\AIT-ExcelAddIn-E-conomic on Github\AIT-ExcelAddIn-E-conomic\obj\Debug\Views\PreferencesWindow.baml

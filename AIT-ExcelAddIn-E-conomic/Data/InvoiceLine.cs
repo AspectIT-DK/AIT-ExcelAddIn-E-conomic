@@ -18,5 +18,9 @@ namespace AIT_ExcelAddIn_E_conomic.Data
         public decimal Quantity { get; set; }
         [JsonPropertyName("unitNetPrice")]
         public decimal UnitNetPrice { get; set; }
+        public static InvoiceLine GetLineSeparator(int LineNumber = 99, int SortKey = 99)
+        {
+            return new InvoiceLine { LineNumber = LineNumber, SortKey = SortKey };
+        }
     }
 }

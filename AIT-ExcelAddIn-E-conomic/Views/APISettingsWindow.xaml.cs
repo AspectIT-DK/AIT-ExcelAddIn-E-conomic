@@ -54,8 +54,7 @@ namespace AIT_ExcelAddIn_E_conomic.Views
             var res = await APIHandler.TestAPIConnection();
             var status = res.IsSuccessStatusCode;
 
-            Logger.WriteLine(res.Content.ToString());
-            Logger.WriteLine(res.StatusCode.ToString());
+            Logger.WriteLine("API Test - Status Code: " + res.StatusCode.ToString());
 
             if (status)
             {

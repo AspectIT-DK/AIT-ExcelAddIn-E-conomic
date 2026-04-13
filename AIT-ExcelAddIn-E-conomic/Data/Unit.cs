@@ -6,5 +6,7 @@ namespace AIT_ExcelAddIn_E_conomic.Data
     {
         [JsonPropertyName("unitNumber")]
         public int UnitNumber { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
     }
 }

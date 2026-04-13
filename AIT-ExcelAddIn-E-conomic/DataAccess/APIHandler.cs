@@ -11,68 +11,107 @@ using Config = AIT_ExcelAddIn_E_conomic.Configuration;
 
 namespace AIT_ExcelAddIn_E_conomic.DataAccess
 {
+    //
+    // Documentation: https://restdocs.e-conomic.com/
+    // Default Page Size for requests is 1000
+    //
     public class APIHandler
     {
-        internal HttpClient _httpclient;
-        private JsonSerializerOptions _options;
-        private const string _contentType = "application/json"; // application/json; charset=UTF-8
+        private HttpClient HttpClient;
+        private JsonSerializerOptions Options;
+        private const string ContentType = "application/json"; // application/json; charset=UTF-8
 
         public APIHandler()
         {
-            _httpclient = new HttpClient();
+            HttpClient = new HttpClient();
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-            _httpclient.DefaultRequestHeaders.Add("X-AppSecretToken", Config::Settings.API["X-AppSecretToken"].ToString());
-            _httpclient.DefaultRequestHeaders.Add("X-AgreementGrantToken", Config::Settings.API["X-AgreementGrantToken"].ToString());
-            _httpclient.BaseAddress = new Uri("https://restapi.e-conomic.com");
+            HttpClient.DefaultRequestHeaders.Add("X-AppSecretToken", Config::Settings.API["X-AppSecretToken"].ToString());
+            HttpClient.DefaultRequestHeaders.Add("X-AgreementGrantToken", Config::Settings.API["X-AgreementGrantToken"].ToString());
+            HttpClient.BaseAddress = new Uri("https://restapi.e-conomic.com");
 
-            _options = new JsonSerializerOptions()
+            Options = new JsonSerializerOptions()
             {
                 WriteIndented = true,
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
             };
 
         }
-        public async Task<HttpResponseMessage> TestAPIConnection()
-        {
-            string endpoint = "/app-settings";
-            var response = await _httpclient.GetAsync(endpoint);
-
-            return response;
-        }
         public async Task<HttpResponseMessage> CreateInvoiceDraft(Invoice invoice)
         {
-            string endpoint = "/invoices/drafts";
+            string Endpoint = "/invoices/drafts";
 
-            string invoicejson = JsonSerializer.Serialize<Invoice>(invoice, _options);
-            Logger.WriteLine(invoicejson);
-            var content = new StringContent(invoicejson, Encoding.UTF8, _contentType);
-            var response = await _httpclient.PostAsync(endpoint, content);
+            string InvoiceJSON = JsonSerializer.Serialize<Invoice>(invoice, Options);
+            //Logger.WriteLine(InvoiceJSON);
+            var Content = new StringContent(InvoiceJSON, Encoding.UTF8, ContentType);
+            var Response = await HttpClient.PostAsync(Endpoint, Content);
 
-            return response;
+            return Response;
         }
+        public async Task<HttpResponseMessage> TestAPIConnection()
+        {
+            string Endpoint = "/app-settings";
+            var Response = await HttpClient.GetAsync(Endpoint);
+
+            return Response;
+        }
+
         public async Task<LayoutCollection> GetAllLayouts()
         {
-            string endpoint = "/layouts?pagesize=200";
-            var response = await _httpclient.GetAsync(endpoint);
-            var content = await response.Content.ReadAsStringAsync();
+            string Endpoint = "/layouts?pagesize=1000"; // TODO: Implement consistent way to actually get - ALL - Layouts; If > 1000 exist, we only get the first 1000.
+            var Response = await HttpClient.GetAsync(Endpoint);
+            var Content = await Response.Content.ReadAsStringAsync();
 
-            return JsonSerializer.Deserialize<LayoutCollection>(content);
+            return JsonSerializer.Deserialize<LayoutCollection>(Content);
         }
         public async Task<VatZoneCollection> GetAllVatZones()
         {
-            string endpoint = "/vat-zones?pagesize=200";
-            var response = await _httpclient.GetAsync(endpoint);
-            var content = await response.Content.ReadAsStringAsync();
+            string Endpoint = "/vat-zones?pagesize=1000"; // TODO: Implement consistent way to actually get - ALL - VAT Zones; If > 1000 exist, we only get the first 1000.
+            var Response = await HttpClient.GetAsync(Endpoint);
+            var Content = await Response.Content.ReadAsStringAsync();
 
-            return JsonSerializer.Deserialize<VatZoneCollection>(content);
+            return JsonSerializer.Deserialize<VatZoneCollection>(Content);
         }
         public async Task<PaymentTermsCollection> GetAllPaymentTerms()
         {
-            string endpoint = "/payment-terms?pagesize=200";
-            var response = await _httpclient.GetAsync(endpoint);
-            var content = await response.Content.ReadAsStringAsync();
+            string Endpoint = "/payment-terms?pagesize=1000"; // TODO: Implement consistent way to actually get - ALL - Payment terms; If > 1000 exist, we only get the first 1000.
+            var Response = await HttpClient.GetAsync(Endpoint);
+            var Content = await Response.Content.ReadAsStringAsync();
 
-            return JsonSerializer.Deserialize<PaymentTermsCollection>(content);
+            return JsonSerializer.Deserialize<PaymentTermsCollection>(Content);
+        }
+        public async Task<Customer> GetCustomer(int CustomerNumber)
+        {
+            string Endpoint = $"/customers/{CustomerNumber}";
+            var Response = await HttpClient.GetAsync(Endpoint);
+            var Content = await Response.Content.ReadAsStringAsync();
+
+            if (Response.IsSuccessStatusCode) return JsonSerializer.Deserialize<Customer>(Content);
+            else return null;
+        }
+        public async Task<CustomerGroup> GetCustomerGroup(int CustomerGroupNumber)
+        {
+            string Endpoint = $"/customer-groups/{CustomerGroupNumber}";
+            var Response = await HttpClient.GetAsync(Endpoint);
+            var Content = await Response.Content.ReadAsStringAsync();
+
+            if (Response.IsSuccessStatusCode) return JsonSerializer.Deserialize<CustomerGroup>(Content);
+            else return null;
+        }
+        public async Task<ProductCollection> GetAllProducts()
+        {
+            string Endpoint = "/products?pagesize=1000"; // TODO: Implement consistent way to actually get - ALL - products; If > 1000 products exist, we only get the first 1000.
+            var Response = await HttpClient.GetAsync(Endpoint);
+            var Content = await Response.Content.ReadAsStringAsync();
+
+            return JsonSerializer.Deserialize<ProductCollection>(Content);
+        }
+        public async Task<UnitCollection> GetAllUnits()
+        {
+            string Endpoint = "/units?pagesize=1000"; // TODO: Implement consistent way to actually get - ALL - products; If > 1000 products exist, we only get the first 1000.
+            var Response = await HttpClient.GetAsync(Endpoint);
+            var Content = await Response.Content.ReadAsStringAsync();
+
+            return JsonSerializer.Deserialize<UnitCollection>(Content);
         }
     }
 }

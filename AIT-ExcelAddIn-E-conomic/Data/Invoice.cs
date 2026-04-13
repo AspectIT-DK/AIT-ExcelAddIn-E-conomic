@@ -15,18 +15,15 @@ namespace AIT_ExcelAddIn_E_conomic.Data
         [JsonPropertyName("paymentTerms")]
         public PaymentTerms PaymentTerms { get; set; }
         [JsonPropertyName("currency")]
-        public string CurrencyCode { get; set; } // ISO-4217
+        public string CurrencyCode { get; set; } = "DKK"; // ISO-4217    // TODO: Implement Currency selector
         [JsonPropertyName("date")]
-        public string Date { get; set; }
+        public string Date { get; set; } = DateTime.Today.ToString("yyyy-MM-dd"); // ISO-8601
         [JsonPropertyName("lines")]
         public List<InvoiceLine> Lines { get; set; }
 
         public Invoice()
         {
-            // TODO: Implement Currency selector and Date changer
-            CurrencyCode = "DKK";
-            Date         = DateTime.Today.ToString("yyyy-MM-dd");
-            Lines        = new List<InvoiceLine>();
+            Lines = new List<InvoiceLine>();
         }
 
         public Invoice GetTestInvoice()
@@ -36,7 +33,6 @@ namespace AIT_ExcelAddIn_E_conomic.Data
             inv.Recipient = new Recipient { Name = "Recipient Name", VatZone = new VatZone() { Name = "VatZone Name", VatZoneNumber = 1 } };
             inv.Layout = new Layout { LayoutNumber = 21 };
             inv.PaymentTerms = new PaymentTerms { Name = "Payment Stinkterms", PaymentTermsNumber = 5 };
-            inv.CurrencyCode = "DKK";
 
             InvoiceLine invline = new InvoiceLine();
             invline.LineNumber = 1;
@@ -57,7 +53,7 @@ namespace AIT_ExcelAddIn_E_conomic.Data
             else return false;
         }
 
-        public bool Equals(Invoice x, Invoice y)
+        public bool Equals(Invoice x, Invoice y) // REFACTOR
         {
             if(ReferenceEquals(x,y)) return true;
             if(ReferenceEquals(x,null)) return false;
@@ -65,7 +61,7 @@ namespace AIT_ExcelAddIn_E_conomic.Data
             if(x.GetType() != y.GetType()) return false;
             return x.Customer.CustomerNumber.Equals(y.Customer.CustomerNumber);
         }
-        public int GetHashCode(Invoice obj)
+        public int GetHashCode(Invoice obj) // REMOVE
         {
             if(!(obj.Customer is null))
             {
@@ -76,7 +72,7 @@ namespace AIT_ExcelAddIn_E_conomic.Data
                 return base.GetHashCode();
             }
         }
-        public bool Equals(Invoice other)
+        public bool Equals(Invoice other) // REMOVE
         {
             return this.Customer.CustomerNumber.Equals(other.Customer.CustomerNumber);
         }

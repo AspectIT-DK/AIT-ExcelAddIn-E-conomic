@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:local="clr-namespace:AIT_ExcelAddIn_E_conomic.Views"
-             Title="Invoice Settings" Height="450" Width="600" MinWidth="600" MinHeight="440">
+             Title="Invoice Settings" Height="600" Width="600" MinWidth="600" SizeToContent="Height">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4" MinWidth="2"/>
@@ -14,7 +14,7 @@
             <RowDefinition Height="5"/>
             <RowDefinition Height="100"/>
             <RowDefinition Height="5"/>
-            <RowDefinition Height="135"/>
+            <RowDefinition Height="250"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -76,19 +76,31 @@
             </StackPanel>
         </GroupBox>
 
-        <GroupBox Header="Layout and Terms" Grid.Column="1" Grid.Row="4" Margin="1">
+        <GroupBox Header="Default Values" Grid.Column="1" Grid.Row="4" Margin="1">
             <StackPanel>
                 <DockPanel Margin="4">
                     <Label Content="Layout" ToolTip="Invoice layout"/>
-                    <ComboBox x:Name="ComboBoxLayouts" ItemsSource="{Binding Collection}" SelectedValuePath="LayoutNumber" DisplayMemberPath="Name" HorizontalAlignment="Right" Width="460" MinWidth="400"/>
+                    <ComboBox x:Name="ComboBoxLayouts" ItemsSource="{Binding Collection}" SelectedValuePath="LayoutNumber" DisplayMemberPath="Name" HorizontalAlignment="Right" Width="460" MinWidth="400" ToolTip="Default Layout if not defined on Customer"/>
                 </DockPanel>
                 <DockPanel Margin="4">
-                    <Label Content="Vat Zone"/>
-                    <ComboBox x:Name="ComboBoxVatZones" ItemsSource="{Binding Collection}" SelectedValuePath="VatZoneNumber" DisplayMemberPath="Name" HorizontalAlignment="Right" Width="460" MinWidth="400"/>
+                    <Label Content="VAT Zone"/>
+                    <ComboBox x:Name="ComboBoxVatZones" ItemsSource="{Binding Collection}" SelectedValuePath="VatZoneNumber" DisplayMemberPath="Name" HorizontalAlignment="Right" Width="460" MinWidth="400" ToolTip="Default VAT Zone if not defined on Customer"/>
                 </DockPanel>
                 <DockPanel Margin="4">
                     <Label Content="Payment Terms"/>
-                    <ComboBox x:Name="ComboBoxPaymentTerms" ItemsSource="{Binding Collection}" SelectedValuePath="PaymentTermsNumber" DisplayMemberPath="Name" HorizontalAlignment="Right" Width="460" MinWidth="400"/>
+                    <ComboBox x:Name="ComboBoxPaymentTerms" ItemsSource="{Binding Collection}" SelectedValuePath="PaymentTermsNumber" DisplayMemberPath="Name" HorizontalAlignment="Right" Width="460" MinWidth="400" ToolTip="Default Payment Terms if not defined on Customer"/>
+                </DockPanel>
+                <DockPanel Margin="4">
+                    <Label Content="Product"/>
+                    <ComboBox x:Name="ComboBoxProduct" ItemsSource="{Binding Collection}" SelectedValuePath="ProductNumber" DisplayMemberPath="Name" HorizontalAlignment="Right" Width="460" MinWidth="400" ToolTip="Default Product"/>
+                </DockPanel>
+                <DockPanel Margin="4">
+                    <Label Content="Unit"/>
+                    <ComboBox x:Name="ComboBoxUnit" ItemsSource="{Binding Collection}" SelectedValuePath="UnitNumber" DisplayMemberPath="Name" HorizontalAlignment="Right" Width="460" MinWidth="400" ToolTip="Default Unit"/>
+                </DockPanel>
+                <DockPanel Margin="4">
+                    <Label Content="Issue date"/>
+                    <DatePicker x:Name="DatePickerInvoiceCreatedDate" HorizontalAlignment="Right" Width="460" MinWidth="400"/>
                 </DockPanel>
             </StackPanel>
         </GroupBox>

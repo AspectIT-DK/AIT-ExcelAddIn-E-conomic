@@ -3,44 +3,12 @@
   "WorkspaceRootPath": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|f:\\workspace\\aspectit\\e-conomic tools\\excel add-in\\ait-exceladdin-e-conomic on github\\ait-exceladdin-e-conomic\\data\\invoicebuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|solutionrelative:data\\invoicebuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|f:\\workspace\\aspectit\\e-conomic tools\\excel add-in\\ait-exceladdin-e-conomic on github\\ait-exceladdin-e-conomic\\views\\preferenceswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|solutionrelative:views\\preferenceswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\data\\validate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|solutionrelative:data\\validate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\views\\e-conomicribbon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|solutionrelative:views\\e-conomicribbon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\data\\invoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|solutionrelative:data\\invoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\views\\e-conomicribbon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|solutionrelative:views\\e-conomicribbon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\views\\invoicesettingswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|solutionrelative:views\\invoicesettingswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\views\\invoicesettingswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|solutionrelative:views\\invoicesettingswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\configuration\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|solutionrelative:configuration\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\dataaccess\\registryhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|solutionrelative:dataaccess\\registryhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\dataaccess\\apihandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|solutionrelative:dataaccess\\apihandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\views\\preferenceswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{4CBD33F8-0176-4913-9933-EBB9666184FE}|AIT-ExcelAddIn-E-conomic.csproj|solutionrelative:views\\preferenceswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,130 +18,31 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "APIHandler.cs",
-              "DocumentMoniker": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\DataAccess\\APIHandler.cs",
-              "RelativeDocumentMoniker": "DataAccess\\APIHandler.cs",
-              "ToolTip": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\DataAccess\\APIHandler.cs",
-              "RelativeToolTip": "DataAccess\\APIHandler.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAowEYAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-01T13:26:48.349Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "InvoiceSettingsWindow.xaml.cs",
-              "DocumentMoniker": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Views\\InvoiceSettingsWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Views\\InvoiceSettingsWindow.xaml.cs",
-              "ToolTip": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Views\\InvoiceSettingsWindow.xaml.cs",
-              "RelativeToolTip": "Views\\InvoiceSettingsWindow.xaml.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAgwDoAAABZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-01T13:24:51.715Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "InvoiceSettingsWindow.xaml",
-              "DocumentMoniker": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Views\\InvoiceSettingsWindow.xaml",
-              "RelativeDocumentMoniker": "Views\\InvoiceSettingsWindow.xaml",
-              "ToolTip": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Views\\InvoiceSettingsWindow.xaml",
-              "RelativeToolTip": "Views\\InvoiceSettingsWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-01T13:24:43.02Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "InvoiceBuilder.cs",
-              "DocumentMoniker": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Data\\InvoiceBuilder.cs",
-              "RelativeDocumentMoniker": "Data\\InvoiceBuilder.cs",
-              "ToolTip": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Data\\InvoiceBuilder.cs",
-              "RelativeToolTip": "Data\\InvoiceBuilder.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAAAEsAAAAXAAAAAAAAAA==",
+              "Title": "PreferencesWindow.xaml.cs",
+              "DocumentMoniker": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Views\\PreferencesWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\PreferencesWindow.xaml.cs",
+              "ToolTip": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Views\\PreferencesWindow.xaml.cs",
+              "RelativeToolTip": "Views\\PreferencesWindow.xaml.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAuwC0AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T14:25:18.397Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "E-ConomicRibbon.cs",
-              "DocumentMoniker": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Views\\E-ConomicRibbon.cs",
-              "RelativeDocumentMoniker": "Views\\E-ConomicRibbon.cs",
-              "ToolTip": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Views\\E-ConomicRibbon.cs",
-              "RelativeToolTip": "Views\\E-ConomicRibbon.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAowCkAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T07:39:06.348Z",
+              "WhenOpened": "2026-04-12T23:14:58.263Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Validate.cs",
-              "DocumentMoniker": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Data\\Validate.cs",
-              "RelativeDocumentMoniker": "Data\\Validate.cs",
-              "ToolTip": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Data\\Validate.cs",
-              "RelativeToolTip": "Data\\Validate.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-01T13:52:52.765Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "E-ConomicRibbon.cs [Design]",
-              "DocumentMoniker": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Views\\E-ConomicRibbon.cs",
-              "RelativeDocumentMoniker": "Views\\E-ConomicRibbon.cs",
-              "ToolTip": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Views\\E-ConomicRibbon.cs [Design]",
-              "RelativeToolTip": "Views\\E-ConomicRibbon.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-01T14:20:08.961Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Invoice.cs",
-              "DocumentMoniker": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Data\\Invoice.cs",
-              "RelativeDocumentMoniker": "Data\\Invoice.cs",
-              "ToolTip": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Data\\Invoice.cs",
-              "RelativeToolTip": "Data\\Invoice.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAkwEIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T14:30:24.444Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "RegistryHelper.cs",
-              "DocumentMoniker": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\DataAccess\\RegistryHelper.cs",
-              "RelativeDocumentMoniker": "DataAccess\\RegistryHelper.cs",
-              "ToolTip": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\DataAccess\\RegistryHelper.cs",
-              "RelativeToolTip": "DataAccess\\RegistryHelper.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-01T13:28:46.796Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Settings.cs",
-              "DocumentMoniker": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Configuration\\Settings.cs",
-              "RelativeDocumentMoniker": "Configuration\\Settings.cs",
-              "ToolTip": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Configuration\\Settings.cs",
-              "RelativeToolTip": "Configuration\\Settings.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAowFMAAAB0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-01T13:28:53.404Z"
+              "Title": "PreferencesWindow.xaml",
+              "DocumentMoniker": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Views\\PreferencesWindow.xaml",
+              "RelativeDocumentMoniker": "Views\\PreferencesWindow.xaml",
+              "ToolTip": "F:\\Workspace\\AspectIT\\E-Conomic Tools\\Excel Add-In\\AIT-ExcelAddIn-E-conomic on Github\\AIT-ExcelAddIn-E-conomic\\Views\\PreferencesWindow.xaml",
+              "RelativeToolTip": "Views\\PreferencesWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-12T11:40:04.807Z"
             }
           ]
         }

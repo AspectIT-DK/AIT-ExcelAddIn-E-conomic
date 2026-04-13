@@ -20,38 +20,32 @@ namespace AIT_ExcelAddIn_E_conomic
 
         private void BtnOpenAPISettings_Click(object sender, RibbonControlEventArgs e)
         {
-            APISettingsWindow window = new APISettingsWindow();
-            window.ShowDialog();
+            APISettingsWindow Window = new APISettingsWindow();
+            Window.ShowDialog();
         }
 
         private void BtnOpenInvoiceSettings_Click(object sender, RibbonControlEventArgs e)
         {
-            InvoiceSettingsWindow window = new InvoiceSettingsWindow();
-            window.ShowDialog();
+            InvoiceSettingsWindow Window = new InvoiceSettingsWindow();
+            Window.ShowDialog();
         }
 
         private void BtnOpenHelp_Click(object sender, RibbonControlEventArgs e)
         {
-            HelpWindow window = new HelpWindow();
-            window.ShowDialog();
+            HelpWindow Window = new HelpWindow();
+            Window.ShowDialog();
         }
 
         private async void BtnNewInvoiceDraft_Click(object sender, RibbonControlEventArgs e)
         {
             InvoiceBuilder InvoiceBuilder = new InvoiceBuilder();
-            APIHandler APIHandler = new APIHandler();
-            List<Invoice> Invoices = InvoiceBuilder.BuildInvoicesFromSelection(ExcelHelper.GetSelectedRows());
-            if(Invoices is null)
-            {
-                return;
-            }
+            await InvoiceBuilder.SendInvoicesToAPI(InvoiceBuilder.BuildInvoicesFromSelection(ExcelHelper.GetSelectedRows()));
+        }
 
-            foreach (Invoice Invoice in Invoices)
-            {
-                var Response = await APIHandler.CreateInvoiceDraft(Invoice);
-                Logger.WriteLine(Invoice.Customer.CustomerNumber.ToString());
-                Logger.WriteLine("API Call: " + ((int)Response.StatusCode).ToString() + " - " + Response.ReasonPhrase.ToString());
-            }
+        private void BtnOpenPreferences_Click(object sender, RibbonControlEventArgs e)
+        {
+            PreferencesWindow Window = new PreferencesWindow();
+            Window.ShowDialog();
         }
     }
 }

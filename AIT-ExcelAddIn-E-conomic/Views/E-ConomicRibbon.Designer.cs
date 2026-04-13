@@ -42,6 +42,7 @@
             this.BtnOpenAPISettings = this.Factory.CreateRibbonButton();
             this.BtnOpenInvoiceSettings = this.Factory.CreateRibbonButton();
             this.BtnOpenHelp = this.Factory.CreateRibbonButton();
+            this.BtnOpenPreferences = this.Factory.CreateRibbonButton();
             this.tab_economic.SuspendLayout();
             this.GrpInvoicing.SuspendLayout();
             this.GrpSettings.SuspendLayout();
@@ -66,7 +67,7 @@
             this.BtnNewInvoiceDraft.Label = "New Invoice Draft";
             this.BtnNewInvoiceDraft.Name = "BtnNewInvoiceDraft";
             this.BtnNewInvoiceDraft.OfficeImageId = "DataFormAddRecord";
-            this.BtnNewInvoiceDraft.ScreenTip = "A new Invoice Draft is created using the selected Rows";
+            this.BtnNewInvoiceDraft.ScreenTip = "New Invoice Draft is created using the selected Rows";
             this.BtnNewInvoiceDraft.ShowImage = true;
             this.BtnNewInvoiceDraft.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnNewInvoiceDraft_Click);
             // 
@@ -80,6 +81,7 @@
             // 
             this.MenuBtnSettings.Items.Add(this.BtnOpenAPISettings);
             this.MenuBtnSettings.Items.Add(this.BtnOpenInvoiceSettings);
+            this.MenuBtnSettings.Items.Add(this.BtnOpenPreferences);
             this.MenuBtnSettings.Items.Add(this.BtnOpenHelp);
             this.MenuBtnSettings.Label = "Settings";
             this.MenuBtnSettings.Name = "MenuBtnSettings";
@@ -113,6 +115,15 @@
             this.BtnOpenHelp.ShowImage = true;
             this.BtnOpenHelp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnOpenHelp_Click);
             // 
+            // BtnOpenPreferences
+            // 
+            this.BtnOpenPreferences.Label = "Preferences";
+            this.BtnOpenPreferences.Name = "BtnOpenPreferences";
+            this.BtnOpenPreferences.OfficeImageId = "PageOptionsDialog";
+            this.BtnOpenPreferences.ScreenTip = "Open User Preferences dialog";
+            this.BtnOpenPreferences.ShowImage = true;
+            this.BtnOpenPreferences.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnOpenPreferences_Click);
+            // 
             // E_ConomicRibbon
             // 
             this.Name = "E_ConomicRibbon";
@@ -139,6 +150,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton BtnOpenAPISettings;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton BtnOpenInvoiceSettings;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton BtnOpenHelp;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton BtnOpenPreferences;
     }
 
     partial class ThisRibbonCollection

@@ -10,11 +10,11 @@ none
 false
 VSTO40;TRACE
 
-31841401884
+41376781414
 
-30-1614437058
+35-1151549638
 281448340083
-Views\APISettingsWindow.xaml;Views\HelpWindow.xaml;Views\InvoiceSettingsWindow.xaml;
+Views\APISettingsWindow.xaml;Views\PreferencesWindow.xaml;Views\HelpWindow.xaml;Views\InvoiceSettingsWindow.xaml;
 
 False
 
