@@ -7,8 +7,8 @@ namespace AIT_ExcelAddIn_E_conomic.Logic
 {
     public class CustomerBuilder
     {
-        private readonly IAPIHandler API;
-        public CustomerBuilder(IAPIHandler APIService)
+        private readonly APIHandler API;
+        public CustomerBuilder(APIHandler APIService)
         {
             API = APIService;
         }

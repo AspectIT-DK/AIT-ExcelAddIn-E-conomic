@@ -234,7 +234,6 @@
     <Compile Include="Configuration\RowColorSettings.cs" />
     <Compile Include="DataAccess\APIHandler.cs" />
     <Compile Include="DataAccess\ExcelHelper.cs" />
-    <Compile Include="DataAccess\IAPIHandler.cs" />
     <Compile Include="DataAccess\RegistryHelper.cs" />
     <Compile Include="Data\Currency.cs" />
     <Compile Include="Data\Customer.cs" />

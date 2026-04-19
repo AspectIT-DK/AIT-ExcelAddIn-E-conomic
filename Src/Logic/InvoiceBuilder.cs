@@ -13,9 +13,9 @@ namespace AIT_ExcelAddIn_E_conomic.Data
 {
     public class InvoiceBuilder
     {
-        private readonly IAPIHandler API;
+        private readonly APIHandler API;
         private readonly CustomerBuilder CustomerBuilder;
-        public InvoiceBuilder(IAPIHandler APIService)
+        public InvoiceBuilder(APIHandler APIService)
         {
             API = APIService;
             CustomerBuilder = new CustomerBuilder(APIService);

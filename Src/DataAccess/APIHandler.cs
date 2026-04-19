@@ -15,7 +15,7 @@ namespace AIT_ExcelAddIn_E_conomic.DataAccess
     // Documentation: https://restdocs.e-conomic.com/
     // Default Page Size for requests is 1000
     //
-    public class APIHandler : IAPIHandler
+    public class APIHandler
     {
         private HttpClient HttpClient;
         private JsonSerializerOptions Options;

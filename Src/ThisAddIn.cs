@@ -1,24 +1,16 @@
 ﻿using AIT_ExcelAddIn_E_conomic.Configuration;
 using AIT_ExcelAddIn_E_conomic.Data;
 using AIT_ExcelAddIn_E_conomic.DataAccess;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace AIT_ExcelAddIn_E_conomic
 {
-    public static class ServiceLocator
-    {
-        public static IServiceProvider ServiceProvider { get; set; }
-    }
     public partial class ThisAddIn
     {
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             Settings.LoadSettingsFromRegistry();
 
-            ServiceCollection Services = new ServiceCollection();
-            Services.AddTransient<IAPIHandler, APIHandler>();
-            ServiceLocator.ServiceProvider = Services.BuildServiceProvider();
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

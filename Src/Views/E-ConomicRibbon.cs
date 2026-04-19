@@ -10,12 +10,6 @@ namespace AIT_ExcelAddIn_E_conomic
 {
     public partial class E_ConomicRibbon
     {
-        private readonly IServiceProvider ServiceProvider;
-        public E_ConomicRibbon()
-        {
-            
-        }
-
         private void E_ConomicRibbon_Load(object sender, RibbonUIEventArgs e)
         {
             ShowDebugButtonsIfDebugging();
@@ -41,7 +35,7 @@ namespace AIT_ExcelAddIn_E_conomic
 
         private async void BtnNewInvoiceDraft_Click(object sender, RibbonControlEventArgs e)
         {
-            InvoiceBuilder InvoiceBuilder = new InvoiceBuilder(ServiceProvider.GetRequiredService<IAPIHandler>());
+            InvoiceBuilder InvoiceBuilder = new InvoiceBuilder(new APIHandler());
             await InvoiceBuilder.SendInvoicesToAPI(InvoiceBuilder.BuildInvoicesFromSelection(ExcelHelper.GetSelectedRows()));
         }
 
