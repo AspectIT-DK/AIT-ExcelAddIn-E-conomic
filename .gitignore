@@ -1,0 +1,4 @@
+*.pfx
+
+Src/bin
+Src/obj
