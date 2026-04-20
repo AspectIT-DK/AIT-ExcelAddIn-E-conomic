@@ -71,9 +71,11 @@ namespace AIT_ExcelAddIn_E_conomic.Data
             public Dictionary<int, List<int>> AssociatedRowsByCustomerNumber { get; set; }
         }
 
-        // ------------------------
-        // Primary Builder Method
-        // ------------------------
+        /*
+	    * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+	    *  Primary Builder Method
+	    * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+	    */
         public PreparedInvoiceData BuildInvoicesFromSelection(Excel.Range SelectedRows)
         {
             if (SelectedRows.Count == 0) { return null; } // User has no rows selected; Commit die.
@@ -154,7 +156,6 @@ namespace AIT_ExcelAddIn_E_conomic.Data
             string CustomerName  = Convert.ToString((SingleRow.Cells[1, Settings.FieldMap["ColDefCustomerName"]] as Excel.Range).Value);
             Invoice.Customer     = Customer;
             Invoice.Recipient    = new Recipient(Customer);
-            //Invoice.Recipient    = new Recipient { Name = CustomerName, VatZone = Customer.VatZone };
             Invoice.Layout       = Customer.Layout;
             Invoice.PaymentTerms = Customer.PaymentTerms;
             Invoice.Date         = Settings.InvoiceIssueDate.ToString("yyyy-MM-dd");

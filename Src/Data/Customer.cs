@@ -1,9 +1,12 @@
-﻿using AIT_ExcelAddIn_E_conomic.DataAccess;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace AIT_ExcelAddIn_E_conomic.Data
 {
+    /*
+	* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+	*  Documentation: https://restapi.e-conomic.com/schema/customers.customerNumber.get.schema.json
+	* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+	*/
     public class Customer
     {
         [JsonPropertyName("customerNumber")]
@@ -21,17 +24,23 @@ namespace AIT_ExcelAddIn_E_conomic.Data
         [JsonPropertyName("ean")]
         public string EAN { get; set; }
         [JsonPropertyName("corporateIdentificationNumber")]
-        public string CompanyNumber { get; set; }
+        public string CompanyNumber { get; set; } // CVR
+        [JsonPropertyName("publicEntryNumber")]
+        public string PublicEntryNumber { get; set; }
         [JsonPropertyName("paymentTerms")]
         public PaymentTerms PaymentTerms { get; set; }
         [JsonPropertyName("vatZone")]
         public VatZone VatZone { get; set; }
+        [JsonPropertyName("vatNumber")]
+        public string VatNumber { get; set; } // Not CVR
         [JsonPropertyName("layout")]
         public Layout Layout { get; set; }
         [JsonPropertyName("customerGroup")]
         public CustomerGroup CustomerGroup { get; set; }
-        //[JsonPropertyName("attention")]
-        //public string Attention { get; set; }
+        [JsonPropertyName("customerContact")]
+        public CustomerContact PrimaryContact { get; set; }
+        [JsonPropertyName("attention")]
+        public CustomerContact Attention { get; set; }
 
         public Customer() {}
     }

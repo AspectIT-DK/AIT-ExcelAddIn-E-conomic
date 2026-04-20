@@ -36,14 +36,14 @@
         {
             this.tab_economic = this.Factory.CreateRibbonTab();
             this.GrpInvoicing = this.Factory.CreateRibbonGroup();
-            this.GrpSettings = this.Factory.CreateRibbonGroup();
-            this.GrpDebug = this.Factory.CreateRibbonGroup();
             this.BtnNewInvoiceDraft = this.Factory.CreateRibbonButton();
+            this.GrpSettings = this.Factory.CreateRibbonGroup();
             this.MenuBtnSettings = this.Factory.CreateRibbonMenu();
             this.BtnOpenAPISettings = this.Factory.CreateRibbonButton();
             this.BtnOpenInvoiceSettings = this.Factory.CreateRibbonButton();
             this.BtnOpenPreferences = this.Factory.CreateRibbonButton();
             this.BtnOpenHelp = this.Factory.CreateRibbonButton();
+            this.GrpDebug = this.Factory.CreateRibbonGroup();
             this.BtnDebug1 = this.Factory.CreateRibbonButton();
             this.tab_economic.SuspendLayout();
             this.GrpInvoicing.SuspendLayout();
@@ -65,19 +65,6 @@
             this.GrpInvoicing.Label = "Invoicing";
             this.GrpInvoicing.Name = "GrpInvoicing";
             // 
-            // GrpSettings
-            // 
-            this.GrpSettings.Items.Add(this.MenuBtnSettings);
-            this.GrpSettings.Label = "Settings";
-            this.GrpSettings.Name = "GrpSettings";
-            // 
-            // GrpDebug
-            // 
-            this.GrpDebug.Items.Add(this.BtnDebug1);
-            this.GrpDebug.Label = "Debug";
-            this.GrpDebug.Name = "GrpDebug";
-            this.GrpDebug.Visible = false;
-            // 
             // BtnNewInvoiceDraft
             // 
             this.BtnNewInvoiceDraft.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -87,6 +74,12 @@
             this.BtnNewInvoiceDraft.ScreenTip = "New Invoice Draft is created using the selected Rows";
             this.BtnNewInvoiceDraft.ShowImage = true;
             this.BtnNewInvoiceDraft.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnNewInvoiceDraft_Click);
+            // 
+            // GrpSettings
+            // 
+            this.GrpSettings.Items.Add(this.MenuBtnSettings);
+            this.GrpSettings.Label = "Settings";
+            this.GrpSettings.Name = "GrpSettings";
             // 
             // MenuBtnSettings
             // 
@@ -134,6 +127,13 @@
             this.BtnOpenHelp.ScreenTip = "Open Help dialog";
             this.BtnOpenHelp.ShowImage = true;
             this.BtnOpenHelp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnOpenHelp_Click);
+            // 
+            // GrpDebug
+            // 
+            this.GrpDebug.Items.Add(this.BtnDebug1);
+            this.GrpDebug.Label = "Debug";
+            this.GrpDebug.Name = "GrpDebug";
+            this.GrpDebug.Visible = false;
             // 
             // BtnDebug1
             // 

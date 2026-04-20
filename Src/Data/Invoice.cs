@@ -15,7 +15,7 @@ namespace AIT_ExcelAddIn_E_conomic.Data
         [JsonPropertyName("paymentTerms")]
         public PaymentTerms PaymentTerms { get; set; }
         [JsonPropertyName("currency")]
-        public string CurrencyCode { get; set; } = "DKK"; // ISO-4217    // TODO: Implement Currency selector
+        public string CurrencyCode { get; set; } = "DKK";                         // ISO-4217    // TODO: Implement Currency selector
         [JsonPropertyName("date")]
         public string Date { get; set; } = DateTime.Today.ToString("yyyy-MM-dd"); // ISO-8601
         [JsonPropertyName("lines")]

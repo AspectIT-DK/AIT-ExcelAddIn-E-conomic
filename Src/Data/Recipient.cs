@@ -1,8 +1,13 @@
 ﻿using System.Text.Json.Serialization;
-using System.Windows.Media;
 
 namespace AIT_ExcelAddIn_E_conomic.Data
 {
+    /*
+	* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+	*  Documentation: https://restapi.e-conomic.com/schema/invoices.drafts.post.schema.json 
+	*  See 'recipient' property
+	* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+	*/
     public class Recipient
     {
         [JsonPropertyName("name")]
@@ -19,10 +24,10 @@ namespace AIT_ExcelAddIn_E_conomic.Data
         public string Country { get; set; }
         [JsonPropertyName("ean")]
         public string EAN { get; set; }
-        //[JsonPropertyName("attention")]
-        //public string Attention { get; set; }
+        [JsonPropertyName("attention")]
+        public CustomerContact Attention { get; set; }
         [JsonPropertyName("publicEntryNumber")]
-        public string CompanyNumber { get; set; }
+        public string PublicEntryNumber { get; set; }
         public Recipient() {}
         public Recipient(Customer Customer)
         {
@@ -31,11 +36,10 @@ namespace AIT_ExcelAddIn_E_conomic.Data
             City     = Customer.City;
             Postcode = Customer.Postcode;
             Country  = Customer.Country;
-
-            VatZone       = Customer.VatZone;
-            EAN           = Customer.EAN;
-            CompanyNumber = Customer.CompanyNumber;
+            VatZone  = Customer.VatZone;
+            EAN      = Customer.EAN;
+            Attention         = Customer.Attention;
+            PublicEntryNumber = Customer.PublicEntryNumber;
         }
-
     }
 }

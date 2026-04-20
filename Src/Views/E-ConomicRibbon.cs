@@ -1,10 +1,10 @@
 ﻿using AIT_ExcelAddIn_E_conomic.Data;
 using AIT_ExcelAddIn_E_conomic.DataAccess;
 using AIT_ExcelAddIn_E_conomic.Views;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Office.Tools.Ribbon;
-using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace AIT_ExcelAddIn_E_conomic
 {
@@ -45,20 +45,22 @@ namespace AIT_ExcelAddIn_E_conomic
             Window.ShowDialog();
         }
 
-        // ----------------
-        // Debugging
-        // ----------------
+        /*
+        * ━━━━━━━━━━━━━━━━━━━━━
+        *  Debugging
+        * ━━━━━━━━━━━━━━━━━━━━━
+        */
         [Conditional("DEBUG")]
         private void ShowDebugButtonsIfDebugging()
         {
             GrpDebug.Visible = true;
         }
 
-        private void BtnDebug1_Click(object sender, RibbonControlEventArgs e)
+        private async void BtnDebug1_Click(object sender, RibbonControlEventArgs e)
         {
             APIHandler API = new APIHandler();
 
-            Invoice Invoice = InvoiceBuilder.GetTestInvoice();
+            CollectionOf<CustomerContact> Contacts = await API.GetAllCustomerContacts(1000);
         }
     }
 }

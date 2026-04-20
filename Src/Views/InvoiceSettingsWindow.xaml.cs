@@ -15,11 +15,11 @@ namespace AIT_ExcelAddIn_E_conomic.Views
         private APIHandler APIHandler;
         private InvoiceFields Fields;
         private List<InvoiceFields> InvoiceFieldList;
-        private LayoutCollection Layouts;
-        private VatZoneCollection VatZones;
-        private PaymentTermsCollection PaymentTerms;
-        private ProductCollection Products;
-        private UnitCollection Units;
+        private CollectionOf<Layout> Layouts;
+        private CollectionOf<VatZone> VatZones;
+        private CollectionOf<PaymentTerms> PaymentTerms;
+        private CollectionOf<Product> Products;
+        private CollectionOf<Unit> Units;
         public InvoiceSettingsWindow()
         {
             InitializeComponent();
